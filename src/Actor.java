@@ -7,9 +7,10 @@ public class Actor extends Person {
     private List<String> filmography;
     private int awardCount;
     private boolean isStar;
+    private int height;
 
     public Actor(String name, String surname, int height, Gender gender) {
-        super(name, surname, height, gender);
+        super(name, surname, gender);
         this.experienceYears = 0;
         this.filmography = new ArrayList<>();
         this.awardCount = 0;
@@ -55,19 +56,14 @@ public class Actor extends Person {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if(obj == null || getClass() != obj.getClass()) return  false;
-
-        Actor actor = (Actor) obj;
-        return Objects.equals(getName(), actor.getName()) &&
-               Objects.equals(getSurname(), actor.getSurname());
-
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        Actor actor = (Actor) o;
+        return height == actor.height;
     }
+
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getSurname());
+        return Objects.hash(super.hashCode(), height);
     }
-
-
 }
